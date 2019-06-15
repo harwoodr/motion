@@ -49,9 +49,9 @@ class inverseKinematics():
         roll = rotational_vector[1]
         yaw = rotational_vector[2]
         #print(rotational_vector)
-        r_x = np.array([  [1., 0., 0.],  [0., math.cos(roll), -math.sin(roll)],  [0., math.sin(roll), math.cos(roll)],])
-        r_y = np.array([  [math.cos(pitch), 0., math.sin(pitch)],  [0., 1., 0.],  [-math.sin(pitch), 0., math.cos(pitch)],])
-        r_z = np.array([  [math.cos(yaw), -math.sin(yaw), 0.],  [math.sin(yaw), math.cos(yaw), 0.],  [0., 0., 1.],])
+        r_x = np.array([  [1., 0., 0.],  [0., math.cos(roll), -math.sin(roll)],  [0., math.sin(roll), math.cos(roll)]])
+        r_y = np.array([  [math.cos(pitch), 0., math.sin(pitch)],  [0., 1., 0.],  [-math.sin(pitch), 0., math.cos(pitch)]])
+        r_z = np.array([  [math.cos(yaw), -math.sin(yaw), 0.],  [math.sin(yaw), math.cos(yaw), 0.],  [0., 0., 1.]])
         return (r_z.dot(r_y).dot(r_x))
 
     def update_platform(self):
