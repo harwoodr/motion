@@ -146,11 +146,11 @@ class motionCueing():
         #print(self.yawIn)
 
         self.xOut = self.tGain*self.apply_movement_scaling(self.surge_dint.apply(self.surge_hp2.apply(self.surge_hp1.apply(self.xIn))))
-        self.pitchOut = self.rGain*self.apply_rotate_scaling(self.pitch_sint.apply(self.pitch_hp2.apply(self.pitchIn)) + self.tilt_scaling(self.sp_tilt_lp.apply(self.xIn)/constants.g))
+        self.pitchOut = -self.rGain*self.apply_rotate_scaling(self.pitch_sint.apply(self.pitch_hp2.apply(self.pitchIn)) + self.tilt_scaling(self.sp_tilt_lp.apply(self.xIn)/constants.g))
 
         #TODO: check if y-axis is backwards
         self.yOut = self.tGain*self.apply_movement_scaling(self.sway_dint.apply(self.sway_hp2.apply(self.sway_hp1.apply(self.yIn))))
-        self.rollOut = self.rGain*self.apply_rotate_scaling(self.roll_sint.apply(self.roll_hp2.apply(self.rollIn)) + self.tilt_scaling(self.sr_tilt_lp.apply(self.yIn)/constants.g))
+        self.rollOut = -self.rGain*self.apply_rotate_scaling(self.roll_sint.apply(self.roll_hp2.apply(self.rollIn)) + self.tilt_scaling(self.sr_tilt_lp.apply(self.yIn)/constants.g))
 
         self.zOut = self.tGain*self.apply_movement_scaling(self.heave_dint.apply(self.heave_hp2.apply(self.heave_hp1.apply(self.zIn))))
         self.yawOut = self.yGain*self.apply_rotate_scaling(self.yaw_sint.apply(self.yaw_hp2.apply(self.yawIn)))

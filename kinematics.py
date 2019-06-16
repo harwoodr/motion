@@ -7,7 +7,7 @@ class inverseKinematics():
     def __init__(self):
         #PAM parameters
         #self.min_pam_length = 1.72                          #minimum length of PAM in metres
-        self.min_pam_length = 1.4                          #minimum length of PAM in metres
+        self.min_pam_length = 1.45                          #minimum length of PAM in metres
         self.max_pam_length = 2.13                           #maximum length of PAM in metres
         self.min_pam_pressure = 30                          #ambient pressure as read by valve controller
         self.max_pam_pressure = 150                         #~60psi as read by valve controller
