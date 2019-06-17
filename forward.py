@@ -48,22 +48,27 @@ counter = 0
 results = np.empty((1,3))
 #liner = np.empty((1,9))
 #print(results.shape)
+print(ik.max_pam_length)
+print(ik.min_pam_length)
 for z in range(0,61):
-    for y in range(-60,61):
-        for x in range(-60,61):
+    for y in range(-30,31):
+        for x in range(-30,31):
             ik.translation_vector=np.array([x/100,y/100,z/100])
             ik.update_platform()
             if (np.amax(ik.pam_lengths)<ik.max_pam_length and np.amin(ik.pam_lengths)>ik.min_pam_length and ik.translation_vector[2]!=0):
+            #if (np.amax(ik.pam_lengths)<=ik.max_pam_length and np.amin(ik.pam_lengths)>=ik.min_pam_length):
                 #results[counter]=[ik.translation_vector[0],ik.translation_vector[1],ik.translation_vector[2],math.degrees(ik.rotational_vector[0]),math.degrees(ik.rotational_vector[1]),math.degrees(ik.rotational_vector[2]),ik.pam_lengths[0],ik.pam_lengths[1],ik.pam_lengths[2],ik.pam_lengths[3],ik.pam_lengths[4],ik.pam_lengths[5],ik.pam_pressures[0],ik.pam_pressures[1],ik.pam_pressures[2],ik.pam_pressures[3],ik.pam_pressures[4],ik.pam_pressures[5]]
                 #np.liner = np.array([ik.translation_vector[0],ik.translation_vector[1],ik.translation_vector[2],ik.pam_lengths[0],ik.pam_lengths[1],ik.pam_lengths[2],ik.pam_lengths[3],ik.pam_lengths[4],ik.pam_lengths[5]])
                 results=np.append(results,[ik.translation_vector],axis=0)
-
+            #ik.reset_platform()
             counter += 1
             if counter % rows == 0:
                 #print(results[counter-1])
                 print(counter,end=" - ")
                 print(time.monotonic() - start,end=" seconds - ")
                 print(counter/(time.monotonic()-start),end=" rows/s\n")
+                print(ik.translation_vector,end=" - ")
+                print()
 #print(results)
 np.savetxt("xresults.csv",results,delimiter=",")
 #fig = plt.figure()

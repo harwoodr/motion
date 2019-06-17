@@ -57,10 +57,11 @@ class MyWidget(QtWidgets.QWidget):
             if i==2:
                 self.sl[i].setMinimum(0)
                 self.sl[i].setMaximum(60)
+                self.sl[i].setValue(30)
             else:
                 self.sl[i].setMinimum(-45)
                 self.sl[i].setMaximum(+45)
-            self.sl[i].setValue(self.initValue)
+                self.sl[i].setValue(self.initValue)
             self.sl[i].setTickPosition(QtWidgets.QSlider.TicksAbove)
             self.sl[i].setTickInterval(5)
             self.sl[i].valueChanged.connect(self.valuechange)
@@ -146,7 +147,7 @@ class MyWidget(QtWidgets.QWidget):
             else:
                 ik.rotational_vector[i-3] = math.radians(size)
             #translation_vector[2] += 0.3
-
+        #ik.reset_platform()
         ik.update_platform()
         for i in range(0,6):
             self.muscle[i].setValue((ik.pam_lengths[i]-1)*50)
